@@ -102,3 +102,14 @@ Procesos/
 
 ---
 > **Smart CV Filter** - *Transformando el reclutamiento con IA Ética, Rápida y Profesional.*
+>
+---
+
+## ⚖️ Licencia y Uso Comercial / License and Commercial Use
+
+Este proyecto está bajo la licencia **GNU GPL v3.0**. Queda **estrictamente prohibida** la comercialización de este software, su código fuente o sus ejecutables por parte de terceros sin el consentimiento expreso del autor. El uso personal y profesional interno está permitido, siempre que no se revenda como un servicio o producto propio.
+
+
+This project is licensed under **GNU GPL v3.0**. The commercialization of this software, its source code, or its executables by third parties is **strictly prohibited** without the express consent of the author. Personal and internal professional use is permitted, provided it is not resold as a service or a proprietary product.
+
+---
