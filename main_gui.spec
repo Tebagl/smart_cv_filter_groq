@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = []
+datas = [('.env', '.'), ('src', 'src')]
 binaries = []
 hiddenimports = []
 tmp_ret = collect_all('customtkinter')
@@ -17,7 +17,7 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=[],
+    excludes=['torch', 'transformers', 'sentence_transformers', 'numpy'],
     noarchive=False,
     optimize=0,
 )

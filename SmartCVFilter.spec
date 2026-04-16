@@ -43,7 +43,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='SmartCVFilter_v2.0', # Nombre actualizado para distinguir la versión ligera
+    name='SmartCVFilter_IAgroq_v2.0', # Nombre actualizado 
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

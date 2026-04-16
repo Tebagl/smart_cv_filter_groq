@@ -6,6 +6,8 @@ pytest-mock==3.12.0
 # Type Checking
 mypy==1.9.0
 types-python-dotenv==1.0.0
+types-requests==2.31.0.20240125
+types-PyYAML==6.0.12.12
 
 # Linting and Code Quality
 flake8==7.0.0
@@ -27,6 +29,8 @@ py-spy==0.3.14
 
 # Mocking and Simulation
 hypothesis==6.95.4
+responses==0.25.0  # Útil para simular respuestas de la API de Groq
 
 # Additional Development Tools
 pre-commit==3.7.0
+pip-tools==7.3.0  # Recomendado para gestionar la compilación de dependencias
