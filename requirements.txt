@@ -1,15 +1,17 @@
-# --- INTERFAZ GRÁFICA ---
+# --- INTERFAZ GRÁFICA (UI) ---
 customtkinter==5.2.2
 darkdetect==0.8.0
 pillow==12.1.1
 
-# --- EXTRACCIÓN DE TEXTO ---
+# --- EXTRACCIÓN Y PROCESAMIENTO de DATOS ---
 pymupdf==1.24.1
+pdfminer.six==20231228
 python-docx==1.2.0
 odfpy==1.4.1
 
-# --- COMUNICACIÓN CON IA (OLLAMA) ---
+# --- COMUNICACIÓN CLOUD (GROQ API) ---
 requests==2.31.0
-
-# --- UTILIDADES ---
 python-dotenv==1.0.1
+
+# --- COMPATIBILIDAD ---
+packaging==23.2
