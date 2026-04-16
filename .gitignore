@@ -1,0 +1,119 @@
+# =============================================================
+# SMART CV FILTER - GLOBAL GITIGNORE (ULTRA-COMPLETE VERSION)
+# =============================================================
+
+# --- 🐍 PYTHON CORE & VIRTUAL ENV ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+.venv.lock
+pyvenv.cfg
+# Bloqueo de carpetas de instalación local (Windows/Linux)
+Lib/
+lib/
+lib64/
+bin/
+include/
+share/
+site-packages/
+*.dist-info/
+
+# --- 📦 DISTRIBUTION & PACKAGING ---
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.tar.gz
+*.zip
+*.png
+*.jpg
+MANIFEST
+
+# --- 🤖 AI, MACHINE LEARNING & MODELS ---
+# Ignora modelos físicos pesados y artefactos de entrenamiento
+models/
+*.model
+*.pkl
+*.joblib
+*.safetensors
+*.bin
+*.tmp
+# Spacy & NLP artifacts
+es_core_news_lg-*/
+.cache/
+.pip-cache/
+
+# --- 📂 PROJECT SPECIFIC (OUTPUT DATA) ---
+# NUNCA subir datos de candidatos o resultados de procesos
+Scripts/
+pruebas_smart_cv_filter/
+procesos_seleccion/
+Procesos/
+results/
+smart_cv_filter.db
+smart_cv_filter.log*
+*.csv
+resumen_proceso.csv
+
+# --- 📊 DATABASE, LOGS & PERF ---
+*.db
+*.sqlite3
+*.sqlite
+logs/
+*.log
+.log/
+*.prof
+*.lprof
+
+# --- 🛠️ IDE, EDITORS & AI TOOLS ---
+# VS Code, IntelliJ, Cursor, Roo-Code, Gemini
+.vscode/
+.idea/
+.cursor/
+.gemini/
+.roo/
+ai-specs/
+openspec/
+*.swp
+*.swo
+*~
+
+# --- 🧪 TESTING & DOCS ---
+.ipynb_checkpoints
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# --- 🔐 SENSITIVE INFORMATION ---
+.env
+*.key
+secrets.json
+
+# --- 🐧 OS GENERATED FILES ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.bak
+*.backup
+*.bkp

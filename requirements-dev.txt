@@ -1,0 +1,32 @@
+# Testing
+pytest==7.4.4
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Type Checking
+mypy==1.9.0
+types-python-dotenv==1.0.0
+
+# Linting and Code Quality
+flake8==7.0.0
+black==24.3.0
+isort==5.13.2
+
+# Debugging
+ipdb==0.13.13
+
+# Documentation
+sphinx==7.2.6
+sphinx-rtd-theme==2.0.0
+
+# Security Scanning
+bandit==1.7.8
+
+# Performance Profiling
+py-spy==0.3.14
+
+# Mocking and Simulation
+hypothesis==6.95.4
+
+# Additional Development Tools
+pre-commit==3.7.0
