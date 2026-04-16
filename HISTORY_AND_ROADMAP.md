@@ -1,36 +1,7 @@
-## 🚀 Hoja de Ruta Futura (Roadmap)
-
-### **Próximos Hitos (v1.4 - v1.5)**
-- [ ] **Refactorización (ProcessManager)**: Separar completamente la lógica de creación de carpetas de la interfaz de usuario.
-- [ ] **Empaquetado Final**: Generación de ejecutable `.exe` único incluyendo los pesos del modelo de IA.
-- [ ] **Exportación de Reportes**: Generar un archivo CSV resumen con el ranking y motivos dentro de cada carpeta de proceso.
-- [ ] **Lazy Loading**: Carga asíncrona del modelo de IA para que la ventana abra instantáneamente.
-
-### **Objetivos a Largo Plazo**
-- [ ] **Soporte Multi-idioma**: Adaptar el motor de negaciones para CVs en inglés.
-- [ ] **Feedback Loop**: Permitir que el reclutador ajuste los umbrales de puntuación desde la GUI.
-- [ ] **Pre-visualización**: Abrir el CV analizado directamente desde la lista de la interfaz.
-
----
-
-## 🛠️ Stack Tecnológico Actual
-* **Lenguaje**: Python 3.10+
-* **GUI**: CustomTkinter (Modern Dark Theme).
-* **NLP/AI**: spaCy, sentence-transformers, PyTorch (All Local).
-* **Documentos**: PyMuPDF (fitz), python-docx.
-* **Logística**: Shutil, Pathlib.
-
----
-
-## 📝 Principios de Diseño
-* **Privacidad**: El dato nunca sale del ordenador del usuario.
-* **Orden**: El sistema no solo analiza, sino que organiza el caos documental.
-* **Transparencia**: El "Motivo" de la IA siempre es visible para el reclutador.
-
 # 📑 Smart CV Filter - Historia y Hoja de Ruta
 
 ## 🎯 Visión General
-Sistema profesional de filtrado y evaluación semántica de CVs que prioriza la **privacidad por diseño** y el **procesamiento local**. Utiliza técnicas avanzadas de NLP y Embeddings para emparejar perfiles candidatos con descripciones de puestos (Job Descriptions) sin enviar datos sensibles a la nube.
+Sistema profesional de filtrado y evaluación semántica de CVs. Evolucionado de un modelo 100% local a una **arquitectura de inferencia híbrida ultra-rápida (Groq)**, manteniendo la **privacidad por diseño** mediante anonimización previa en el cliente.
 
 ---
 
@@ -43,57 +14,59 @@ Sistema profesional de filtrado y evaluación semántica de CVs que prioriza la 
 
 ### **Fase 2: Orquestación y Transición a la Nube (v0.4 - v0.6)**
 * **v0.4 - Orchestrator**: Primer flujo completo de análisis.
-* **v0.5 - Era Gemini**: Integración temporal con Google Gemini API para validación de rúbricas.
-* **v0.6 - Utilidades**: Scripts de limpieza de entorno y gestión de base de datos SQL.
+* **v0.5 - Era Gemini**: Integración temporal con Google Gemini API.
+* **v0.6 - Utilidades**: Scripts de limpieza de entorno y gestión de SQL.
 
-### **Fase 3: IA Local y Gestión de Procesos (v0.7 - v1.4.0) [ESTADO ACTUAL]**
-* **v1.1.0 - Privacy & Local Update**: Eliminación total de APIs externas. Integración de `MiniLM-L12-v2`.
+### **Fase 3: IA Local y Gestión de Procesos (v0.7 - v1.4.0)**
+* **v1.1.0 - Privacy & Local Update**: Integración de `MiniLM-L12-v2` (100% Local).
 * **v1.2.0 - The Organizer Update**: Clasificación física automatizada en carpetas.
-* **v1.3.0 - The Precision & Project Update**: Parche de negaciones regex y organización por proyectos.
-* **v1.4.0 - Persistence & Stability Update (Actual)**:
-    * **Módulo de Reportes**: Generación automática de `resumen_proceso.csv` para auditoría y trazabilidad del reclutador.
-    * **Arquitectura ProcessManager**: Desacoplamiento total de la lógica de archivos; creación automática de la carpeta maestra `procesos_seleccion`.
-    * **Memoria de Sesión**: Capacidad de reanudar procesos antiguos cargando automáticamente Fecha, Puesto y Descripción (JD) desde el disco.
-    * **Linux Stability**: Optimización del motor gráfico para evitar *Segmentation Faults* mediante carga diferida de temas.
+* **v1.3.0 - The Precision Update**: Parche de negaciones regex y organización por proyectos.
+* **v1.4.0 - Persistence Update**: Generación de `resumen_proceso.csv` y arquitectura `ProcessManager`.
+
+### **Fase 4: Inferencia Ultrarrápida y Formatos Libres (v2.0.0) [ESTADO ACTUAL]**
+* **v2.0.0 - The Groq Speed Update**:
+    * **Inferencia en la Nube (Groq)**: Migración a la API de Groq (Llama 3) para reducir el tiempo de análisis de minutos a milisegundos.
+    * **Soporte ODT**: Implementación de `odfpy` para la lectura nativa de archivos de OpenOffice/LibreOffice.
+    * **Optimización de Binarios**: Reducción del ejecutable de 2.5GB a ~120MB al eliminar dependencias pesadas de PyTorch/Transformers.
+    * **Compilación Wine**: Estabilización del entorno de empaquetado para Windows 10 desde Linux.
 
 ---
 
 ## 🏗️ Arquitectura del Sistema (Pipeline)
-1.  **Ingestión**: Selección de carpeta de CVs y validación de campos obligatorios.
-2.  **Entorno de Proceso**: El `ProcessManager` crea o recupera la estructura de carpetas y carga metadatos previos.
-3.  **Limpieza Semántica**: Detección de negaciones y anonimización de datos sensibles.
-4.  **Evaluación Local**: Cálculo de similitud del coseno mediante Embeddings locales.
-5.  **Logística y Registro**: 
-    * Movimiento físico de archivos con renombrado por score.
-    * Escritura en el log de auditoría CSV.
-    * Sincronización en tiempo real de la lista de candidatos "Estrella" en la GUI.
+1.  **Ingestión**: Selección de CVs y detección de formatos (PDF, DOCX, ODT, TXT).
+2.  **Anonimización Local**: Sustitución de datos sensibles antes de salir del equipo.
+3.  **Inferencia Groq**: Envío de texto anonimizado a la API de Groq para evaluación semántica profunda.
+4.  **Logística**: 
+    * Clasificación física en `RECLUTADOS/`, `DUDAS/` o `DESCARTADOS/`.
+    * Renombrado de archivos por score invertido para ordenamiento automático.
+5.  **Trazabilidad**: Actualización del CSV de auditoría y base de datos local.
 
 ---
 
 ## 🚀 Hoja de Ruta Futura (Roadmap)
 
-### **Próximos Hitos (v1.5 - v1.6)**
-- [ ] **Empaquetado Final**: Generación de ejecutable `.exe` / Binario Linux incluyendo los pesos del modelo de IA (PyInstaller).
-- [ ] **Lazy Loading**: Carga asíncrona del modelo de IA para que la ventana abra instantáneamente sin bloqueo inicial.
-- [ ] **Dashboard de Estadísticas**: Gráficos simples en la GUI sobre la distribución de candidatos (Aptos vs Descartados).
+### **Próximos Hitos (v2.1 - v2.2)**
+- [ ] **Validación Dinámica de API Key**: Interfaz en la GUI para introducir/validar la Key de Groq sin editar el `.env`.
+- [ ] **Gestión de Reintentos**: Lógica de *exponential backoff* para manejar límites de ratio en la API.
+- [ ] **Dashboard de Estadísticas**: Gráficos de distribución de candidatos integrados en CustomTkinter.
 
 ### **Objetivos a Largo Plazo**
-- [ ] **Soporte Multi-idioma**: Adaptar el motor de negaciones para CVs en inglés y francés.
-- [ ] **Feedback Loop**: Permitir que el reclutador ajuste los umbrales de puntuación ($Threshold$) desde la GUI en tiempo real.
-- [ ] **Pre-visualización**: Integrar un visor de PDF interno para abrir el CV analizado directamente desde la lista de la interfaz.
+- [ ] **Soporte Multi-idioma**: Adaptar el motor de análisis para CVs en inglés, francés y alemán.
+- [ ] **Feedback Loop**: Permitir que el reclutador ajuste los umbrales de puntuación en tiempo real desde la GUI.
+- [ ] **Pre-visualización**: Integrar un visor de documentos interno para abrir archivos directamente desde la lista de resultados.
 
 ---
 
 ## 🛠️ Stack Tecnológico Actual
-* **Lenguaje**: Python 3.10+ (Entorno Virtual .venv).
-* **GUI**: CustomTkinter (Modern Dark Theme con corrección para Linux).
-* **NLP/AI**: spaCy, sentence-transformers (All Local).
-* **Persistencia**: CSV (Append mode), Pathlib, Shutil.
-* **Sistemas Soportados**: Windows y Linux (X11).
+* **Lenguaje**: Python 3.10+ (Entorno Wine para .exe).
+* **GUI**: CustomTkinter (Modern Dark Theme).
+* **NLP/IA**: Groq SDK (Inferencia), spaCy (Anonimización local).
+* **Formatos**: PyMuPDF, python-docx, defusedxml.
+* **Persistencia**: CSV (Append), SQLite, Pathlib.
 
 ---
 
 ## 📝 Principios de Diseño
-* **Privacidad**: El dato nunca sale del ordenador del usuario.
-* **Continuidad**: El trabajo nunca se pierde; los procesos son reanudables y auditables.
-* **Transparencia**: El reclutador siempre sabe el "porqué" de la decisión de la IA a través del CSV y el Log.
+* **Eficiencia**: Ejecución instantánea sin necesidad de hardware potente (GPU).
+* **Privacidad**: Anonimización local garantizada antes de usar servicios de terceros.
+* **Portabilidad**: Ejecutable ligero de fácil distribución mediante USB o red.
